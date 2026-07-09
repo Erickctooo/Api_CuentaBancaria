@@ -1,8 +1,8 @@
 package CuentaBancaria.Api.Mapper;
 
-import CuentaBancaria.Api.Dto.UsuarioRequest;
-import CuentaBancaria.Api.Dto.UsuarioResponse;
-import CuentaBancaria.Api.Dto.UsuariosResponse;
+import CuentaBancaria.Api.Dto.Usuario.UsuarioRequest;
+import CuentaBancaria.Api.Dto.Usuario.UsuarioResponse;
+import CuentaBancaria.Api.Dto.Usuario.UsuariosResponse;
 import CuentaBancaria.Api.Entity.Usuario;
 
 import java.util.List;

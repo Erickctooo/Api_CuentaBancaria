@@ -1,10 +1,13 @@
 package CuentaBancaria.Api.Controller;
 
 
-import CuentaBancaria.Api.Dto.UsuarioRequest;
-import CuentaBancaria.Api.Dto.UsuarioResponse;
-import CuentaBancaria.Api.Dto.UsuariosResponse;
+import CuentaBancaria.Api.Dto.ApiResponse.ApiResponse;
+import CuentaBancaria.Api.Dto.Usuario.UsuarioRequest;
+import CuentaBancaria.Api.Dto.Usuario.UsuarioResponse;
+import CuentaBancaria.Api.Dto.Usuario.UsuariosResponse;
 import CuentaBancaria.Api.Service.UsuarioService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -19,19 +22,41 @@ public class UsuarioController {
     }
 
     @GetMapping("/getAll")
-    public UsuariosResponse obtenerUsuarios(){
-        return usuarioService.getAll();
+    public ResponseEntity<ApiResponse<UsuariosResponse>> obtenerUsuarios(){
+
+        HttpStatus status = HttpStatus.OK;
+
+        UsuariosResponse usuarios = usuarioService.getAll();
+
+        ApiResponse<UsuariosResponse> response =
+                new ApiResponse<>(status.value(),status.getReasonPhrase(), usuarios);
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/getByRut")
-    public UsuarioResponse obtenerUsuario(@RequestParam String rut){
-        return usuarioService.getByrut(rut);
+    public ResponseEntity<ApiResponse<UsuarioResponse>> obtenerUsuario(@RequestParam String rut){
+
+        HttpStatus status = HttpStatus.OK;
+
+        UsuarioResponse usuario = usuarioService.getByrut(rut);
+
+        ApiResponse<UsuarioResponse> response =
+                new ApiResponse<>(status.value(),status.getReasonPhrase(),usuario);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/postUser")
-    public UsuarioResponse createUsuario(@RequestBody UsuarioRequest request){
+    public ResponseEntity<ApiResponse<UsuarioResponse>> createUsuario(@RequestBody UsuarioRequest request){
 
-         return usuarioService.crearUsuario(request);
+        HttpStatus status = HttpStatus.CREATED;
+
+         UsuarioResponse usuario = usuarioService.crearUsuario(request);
+
+         ApiResponse<UsuarioResponse> response =
+                 new ApiResponse<>(status.value(),status.getReasonPhrase(),usuario);
+         return ResponseEntity.status(HttpStatus.CREATED)
+                 .body(response);
     }
 
 }

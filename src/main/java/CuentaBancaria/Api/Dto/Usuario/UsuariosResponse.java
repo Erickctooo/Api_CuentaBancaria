@@ -1,4 +1,4 @@
-package CuentaBancaria.Api.Dto;
+package CuentaBancaria.Api.Dto.Usuario;
 
 import java.util.List;
 
