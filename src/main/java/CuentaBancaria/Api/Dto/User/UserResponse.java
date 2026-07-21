@@ -1,6 +1,6 @@
-package CuentaBancaria.Api.Dto.Usuario;
+package CuentaBancaria.Api.Dto.User;
 
-public record UsuarioResponse(
+public record UserResponse(
 
         Long id,
         String rut,
